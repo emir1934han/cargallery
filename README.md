@@ -1,22 +1,72 @@
-# Araba Galerisi Yönetim Sistemi (Car Gallery API)
+# 🚗 PremiumAuto - Galeri ve Müşteri Yönetim Sistemi (Full-Stack)
 
-Bu proje, Orta Düzey Programlama dersi final projesi kapsamında geliştirilmiş bir Araba Galerisi Yönetim Sistemi API'sidir. Proje, araçların veritabanına eklenmesi, güncellenmesi, silinmesi ve listelenmesi (CRUD) işlemlerini gerçekleştirmektedir.
+![Java](https://img.shields.io/badge/Java-17-orange.svg)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple.svg)
+![Chart.js](https://img.shields.io/badge/Chart.js-Interactive-blue.svg)
 
-## Kullanılan Teknolojiler
-* **Java 17 & Spring Boot:** Temel uygulama iskeleti.
-* **Spring Data JPA & Hibernate:** Veritabanı işlemleri ve Entity yönetimi.
-* **H2 Database:** Geliştirme ortamı için bellek içi (in-memory) veritabanı.
-* **Spring Security:** API uç noktalarının güvenliği ve Rol Tabanlı Erişim Kontrolü (RBAC).
-* **Spring Boot Validation:** DTO nesneleri üzerinden gelen verilerin doğrulanması.
+Bu proje, **Orta Düzey Programlama** dersi final projesi kapsamında geliştirilmiş, kurumsal düzeyde bir **Araba Galerisi Yönetim Sistemi** otomasyonudur. 
 
-## Kurulum ve Çalıştırma
-1. Projeyi bilgisayarınıza indirin (ZIP veya Git Clone).
-2. Projeyi IntelliJ IDEA veya tercih ettiğiniz bir IDE ile açın.
+Başlangıçta bir REST API olarak tasarlanan proje, daha sonra genişletilerek **İlişkisel Veritabanı (Araçlar, Müşteriler, Satışlar)** ve modern bir **Single Page Application (SPA)** arayüzü ile tam teşekküllü bir otomasyona dönüştürülmüştür.
+
+---
+
+## ✨ Öne Çıkan Profesyonel Özellikler
+
+### 🛡️ Güçlü Backend (API) Mimarisi
+* **İlişkisel Veritabanı:** Araç, Müşteri ve Satış tabloları arasında `@ManyToOne` ilişkileri.
+* **Derived Queries:** Spring Data JPA ile özel filtreleme ve arama metotları.
+* **Global Exception Handling:** Hataların `@RestControllerAdvice` ile JSON formatında şık bir şekilde yakalanması.
+* **Validasyon:** `@Valid` ve DTO'lar aracılığıyla gelen verilerin sıkı kontrolü.
+* **Rol Tabanlı Güvenlik:** Spring Security ile Admin ve User yetkilendirmeleri.
+
+### 💻 Modern Frontend ve UX (Kullanıcı Deneyimi)
+* **Gece/Gündüz Modu (Dark Theme):** Tek tıkla tüm arayüzü premium karanlık temaya geçirme.
+* **İnteraktif Dashboard:** Chart.js kullanılarak veritabanından anlık çekilen dinamik Araç Dağılımı (Pasta Grafik) ve Satış Hacmi (Sütun Grafik) analizleri.
+* **CRM Paneli:** Müşterilerin geçmiş alımlarını ve toplam cirolarını gösteren akıllı "Müşteri Profil" ekranı.
+* **PDF Fatura Çıktısı:** Gerçekleşen satışlar için sistem tarafından otomatik "Kurumsal Satış Sözleşmesi ve Fatura" oluşturma ve yazdırma.
+* **Akıllı Maskeleme:** Telefon numaraları (`+90 (5XX)`), KM ve Fiyat bilgilerinin anlık formatlanması.
+* **Excel'e Aktarım:** Tablolardaki anlık verilerin tek tıkla `.csv` (Excel) formatında indirilmesi.
+* **Canlı Arama (Live Search):** Sayfa yenilenmeden, arka plan API'si ile haberleşerek araç filtreleme.
+* **SweetAlert2 Entegrasyonu:** Tarayıcının sıkıcı uyarıları yerine modern, animasyonlu bildirim pop-up'ları.
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
+
+**Backend:**
+* Java 17 & Spring Boot
+* Spring Data JPA & Hibernate
+* H2 Database (In-Memory)
+* Spring Security & Validation
+
+**Frontend:**
+* HTML5, CSS3, Vanilla JavaScript (Fetch API)
+* Bootstrap 5 (Responsive Tasarım)
+* Chart.js (Veri Görselleştirme)
+* SweetAlert2 (Animasyonlu Bildirimler)
+
+---
+
+## 🚀 Kurulum ve Çalıştırma
+
+1. Projeyi bilgisayarınıza indirin (ZIP veya `git clone`).
+2. Projeyi **IntelliJ IDEA** veya tercih ettiğiniz bir IDE ile açın.
 3. Maven bağımlılıklarının yüklenmesini bekleyin.
-4. `CargalleryApplication.java` sınıfını bularak projeyi başlatın (`Run`).
-5. Proje varsayılan olarak `http://localhost:8080` portunda çalışacaktır.
+4. `CargalleryApplication.java` sınıfını bularak projeyi başlatın (Run).
+5. Tarayıcınızdan **`http://localhost:8080`** adresine gidin.
 
-## API Kullanımı ve Güvenlik
-Projede Spring Security kullanılmıştır. Metotlara erişim için **Basic Auth** gereklidir:
-* **Kullanıcı Rolü (Sadece Okuma - GET):** Username: `user` | Password: `1234`
-* **Admin Rolü (Tam Yetki - CRUD):** Username: `admin` | Password: `admin123`
+> **Not:** H2 veritabanı paneline erişmek için `http://localhost:8080/h2-console` adresini kullanabilirsiniz.
+
+---
+
+## 🔐 API Kullanımı ve Güvenlik (Basic Auth)
+
+Projede Spring Security aktiftir ve arka plan uç noktalarına erişim izne tabidir:
+
+| Rol | Yetki Alanı | Kullanıcı Adı | Şifre |
+| :--- | :--- | :--- | :--- |
+| **USER** | Sadece Okuma / Listeleme (GET) | `user` | `1234` |
+| **ADMIN** | Tam Yetki (CRUD İşlemleri) | `admin` | `admin123` |
+
+*(Arayüz üzerinden yapılan tüm otomatik istekler Admin yetkisiyle gönderilecek şekilde yapılandırılmıştır).*
