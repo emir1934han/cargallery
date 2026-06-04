@@ -20,11 +20,14 @@ public class CarController {
         this.carService = carService;
     }
 
+    // --- TEMEL CRUD İŞLEMLERİ ---
+
     @GetMapping
     public List<Car> getAllCars() {
         return carService.getAllCars();
     }
 
+    // Hocanın eklediği: Tekil veri getirme metodu
     @GetMapping("/{id}")
     public ResponseEntity<Car> getCarById(@PathVariable Long id) {
         return carService.getCarById(id)
@@ -52,6 +55,7 @@ public class CarController {
         return ResponseEntity.notFound().build();
     }
 
+    // Hocanın tarzına uygun olarak String mesaj dönen silme işlemi
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCar(@PathVariable Long id) {
         boolean deleted = carService.deleteCar(id);
@@ -63,10 +67,7 @@ public class CarController {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/available/{available}")
-    public List<Car> getCarsByAvailableStatus(@PathVariable boolean available) {
-        return carService.getCarsByAvailableStatus(available);
-    }
+    // --- DERIVED QUERY METHODS (Hocanın 7. Madde İstediği Kısımlar) ---
 
     @GetMapping("/search")
     public List<Car> searchCarsByBrand(@RequestParam String brand) {
@@ -96,6 +97,7 @@ public class CarController {
         return carService.getLatestFiveCars();
     }
 
+    // Hocanın Transactional (Rollback) testini birebir ekledik
     @PostMapping("/rollback-test")
     public ResponseEntity<Car> createCarWithRollbackTest(@Valid @RequestBody CarRequest carRequest) {
         Car createdCar = carService.createCarWithRollbackTest(carRequest);
