@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-    // İsme göre müşteri arama
     List<Customer> findByFirstNameContainingIgnoreCase(String firstName);
 
-    // Bu email adresiyle kayıtlı müşteri var mı kontrolü
     boolean existsByEmailIgnoreCase(String email);
 }

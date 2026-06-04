@@ -35,21 +35,19 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-                        // Frontend dosyalarına ve h2-console'a izin veriyoruz
+
                         .requestMatchers("/h2-console/**", "/", "/index.html", "/app.js", "/css/**", "/js/**", "/logos/**", "/error").permitAll()
-                        // --- ARAÇ (CAR) KURALLARI ---
+
                         .requestMatchers(HttpMethod.GET, "/cars/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/cars/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/cars/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/cars/**").hasRole("ADMIN")
 
-                        // --- MÜŞTERİ (CUSTOMER) KURALLARI ---
                         .requestMatchers(HttpMethod.GET, "/customers/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/customers/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/customers/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/customers/**").hasRole("ADMIN")
 
-                        // --- SATIŞ (SALE) KURALLARI ---
                         .requestMatchers(HttpMethod.GET, "/sales/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "/sales/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/sales/**").hasRole("ADMIN")

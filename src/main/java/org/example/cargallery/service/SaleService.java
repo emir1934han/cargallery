@@ -30,23 +30,19 @@ public class SaleService {
 
     @Transactional
     public Sale makeSale(SaleRequest req) {
-        // 1. Veritabanından arabayı ve müşteriyi bul
         Car car = carRepository.findById(req.getCarId())
                 .orElseThrow(() -> new RuntimeException("Araç bulunamadı!"));
 
         Customer customer = customerRepository.findById(req.getCustomerId())
                 .orElseThrow(() -> new RuntimeException("Müşteri bulunamadı!"));
 
-        // 2. Arabayı satıldı olarak işaretle ve güncelle
         car.setAvailable(false);
         carRepository.save(car);
 
-        // 3. Satışı kaydet
         Sale sale = new Sale(null, car, customer, req.getSaleDate(), req.getPrice());
         return saleRepository.save(sale);
     }
 
-    // Özel Sorgular: Bir arabanın veya müşterinin geçmiş satışları
     public List<Sale> getSalesByCarId(Long carId) { return saleRepository.findByCarId(carId); }
     public List<Sale> getSalesByCustomerId(Long customerId) { return saleRepository.findByCustomerId(customerId); }
 }

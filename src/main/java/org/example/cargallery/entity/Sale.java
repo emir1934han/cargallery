@@ -10,12 +10,10 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Hangi araba satıldı? (Car tablosuna bağlantı)
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
 
-    // Hangi müşteriye satıldı? (Customer tablosuna bağlantı)
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;

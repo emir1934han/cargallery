@@ -19,8 +19,6 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    // --- TEMEL CRUD İŞLEMLERİ ---
-
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
@@ -56,7 +54,6 @@ public class CarService {
         return false;
     }
 
-    // --- ÖZEL METOTLAR (Sorgular ve Testler) ---
 
     public List<Car> getCarsByAvailableStatus(boolean available) {
         return carRepository.findByAvailable(available);
@@ -88,7 +85,6 @@ public class CarService {
         mapRequestToEntity(req, car);
         Car savedCar = carRepository.save(car);
 
-        // Hocanın istediği bilinçli hata (Rollback testi için)
         if (true) {
             throw new RuntimeException("Rollback testi için bilinçli hata oluşturuldu.");
         }

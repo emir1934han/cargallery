@@ -49,7 +49,6 @@ public class CustomerService {
         return false;
     }
 
-    // Özel Sorgular
     public List<Customer> searchByName(String name) { return customerRepository.findByFirstNameContainingIgnoreCase(name); }
     public boolean checkEmailExists(String email) { return customerRepository.existsByEmailIgnoreCase(email); }
 }

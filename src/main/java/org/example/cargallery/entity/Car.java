@@ -16,7 +16,7 @@ public class Car {
     private String series;
     private String model;
 
-    @Column(name = "car_year") // SQL tablosunda adı 'car_year' olsun, Java'da 'year' kalsın.
+    @Column(name = "car_year")
     private int year;
 
     private String fuelType;
@@ -29,10 +29,8 @@ public class Car {
     private String drivetrain;
     private String color;
 
-    // --- HOCANIN TARZI: BOŞ CONSTRUCTOR ---
     public Car() {}
 
-    // --- HOCANIN TARZI: DOLU CONSTRUCTOR ---
     public Car(Long id, String brand, String series, String model, int year, String fuelType,
                String transmission, boolean available, int km, String bodyType,
                String enginePower, String engineCapacity, String drivetrain, String color) {
@@ -52,7 +50,6 @@ public class Car {
         this.color = color;
     }
 
-    // --- GETTERS & SETTERS ---
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getBrand() { return brand; }

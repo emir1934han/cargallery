@@ -23,7 +23,7 @@ public class CarRequest {
 
     private String transmission;
 
-    private Boolean available; // Burada '= true' atamasını kaldırdık, yapıcı metotta halledeceğiz.
+    private Boolean available;
 
     @Min(value = 0, message = "KM 0'dan küçük olamaz.")
     private int km;
@@ -33,8 +33,6 @@ public class CarRequest {
     private String engineCapacity;
     private String drivetrain;
     private String color;
-
-    // --- HOCANIN TARZINA UYGUN YAPICI METOTLAR (CONSTRUCTORS) EKLENDİ ---
 
     public CarRequest() {
     }
@@ -48,7 +46,7 @@ public class CarRequest {
         this.year = year;
         this.fuelType = fuelType;
         this.transmission = transmission;
-        this.available = available != null ? available : true; // Eğer boş gelirse true (Satışa uygun) yap
+        this.available = available != null ? available : true;
         this.km = km;
         this.bodyType = bodyType;
         this.enginePower = enginePower;
@@ -57,7 +55,6 @@ public class CarRequest {
         this.color = color;
     }
 
-    // --- GETTERS & SETTERS ---
 
     public String getBrand() { return brand; }
     public void setBrand(String brand) { this.brand = brand; }
