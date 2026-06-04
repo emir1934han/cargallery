@@ -1,4 +1,4 @@
-# 🚗 PremiumAuto - Galeri ve Müşteri Yönetim Sistemi (Full-Stack)
+# 🚗 ÇALIŞKAN AUTO - Galeri ve Müşteri Yönetim Sistemi (Full-Stack)
 
 ![Java](https://img.shields.io/badge/Java-17-orange.svg)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)
@@ -6,8 +6,6 @@
 ![Chart.js](https://img.shields.io/badge/Chart.js-Interactive-blue.svg)
 
 Bu proje, **Orta Düzey Programlama** dersi final projesi kapsamında geliştirilmiş, kurumsal düzeyde bir **Araba Galerisi Yönetim Sistemi** otomasyonudur. 
-
-Başlangıçta bir REST API olarak tasarlanan proje, daha sonra genişletilerek **İlişkisel Veritabanı (Araçlar, Müşteriler, Satışlar)** ve modern bir **Single Page Application (SPA)** arayüzü ile tam teşekküllü bir otomasyona dönüştürülmüştür.
 
 ---
 
